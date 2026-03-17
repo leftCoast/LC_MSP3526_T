@@ -1,6 +1,7 @@
 #include <MSP3526_T.h>
 #include <ST7796_t3.h>
 #include <LC_SPI.h>
+#include <mask.h>
 
 // **********************************************************
 //								maskableMSP3526_T
@@ -26,18 +27,6 @@ void maskableMSP3526_T::drawPixel(int16_t x, int16_t y, uint16_t color) {
 	}
 }
 
-/*
-void maskableMSP3526_T::writePixel(int16_t x, int16_t y, uint16_t color) {
-
-	if (gMask) {
-		if (gMask->checkPixel(x,y)) {
-			ST7796_t3::writePixel(x,y,color);
-		}
-	} else {
-		ST7796_t3::writePixel(x,y,color);
-	}
-}
-*/
 
 void maskableMSP3526_T::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) {
 

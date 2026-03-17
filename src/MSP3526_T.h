@@ -5,7 +5,7 @@
 #include <displayObj.h>
 #include <ST7796_t3.h>
 #include <Adafruit_FT6206.h>
-#include <mask.h>
+//#include <mask.h>
 
 class maskableMSP3526_T :	public ST7796_t3 {
 								
@@ -14,7 +14,6 @@ class maskableMSP3526_T :	public ST7796_t3 {
 	virtual	~maskableMSP3526_T(void);
 	
 	virtual	void drawPixel(int16_t x, int16_t y, uint16_t color);
-	//virtual	void writePixel(int16_t x, int16_t y, uint16_t color);
 	virtual	void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
 };
 
