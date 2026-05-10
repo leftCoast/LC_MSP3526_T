@@ -91,7 +91,7 @@ bool MSP3526_T::begin(void) {
 		if (cTS != NULL) {						// We got both now?
 			theTFT->init(320, 480);				// Do the init() like the example.
    		theTFT->invertDisplay(true);		// This LCD requires colors to be inverted.
-			if (cTS->begin(40)) {				// 40 comes from example code.
+			if (cTS->begin(0)) {				// 40 comes from example code.
 				return true;						// If everything checks out? We exit with a success.
 			}											//
 		}												//
