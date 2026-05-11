@@ -3,8 +3,9 @@
 #define MSP3526_T_h
 
 #include <displayObj.h>
-#include <ST7796_t3.h>
+#include <Adafruit_GFX.h>		// Needed here above ST7796_t3.h to keep ST7796_t3.h happy.
 #include <Adafruit_FT6206.h>
+#include <ST7796_t3.h>
 //#include <mask.h>
 
 class maskableMSP3526_T :	public ST7796_t3 {
