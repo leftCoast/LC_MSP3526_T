@@ -109,7 +109,7 @@ bool MSP3526_T::begin(void) {
 
 
 int MSP3526_T::width(void)																							{ return theTFT->width(); }
-int MSP3526_T::height(void)																							{ return theTFT->height(); }
+int MSP3526_T::height(void)																						{ return theTFT->height(); }
 void MSP3526_T::setRotation(byte inRotation)																	{ theTFT->setRotation((uint8_t)inRotation); }
 void MSP3526_T::setTextColor(colorObj* inColor)																{ theTFT->setTextColor(inColor->getColor16()); }
 void MSP3526_T::setTextColor(colorObj* tColor,colorObj* bColor) 										{ theTFT->setTextColor(tColor->getColor16(),bColor->getColor16()); }
@@ -118,7 +118,7 @@ void MSP3526_T::setTextWrap(boolean wrap)																		{ theTFT->setTextWrap
 void MSP3526_T::setFont(const GFXfont* font)																	{ theTFT->setFont(font); }
 void MSP3526_T::setCursor(int x,int y)																			{ theTFT->setCursor(gX(x),gY(y)); }
 void MSP3526_T::drawText(const char* inText)																	{ theTFT->print(inText); }
-void MSP3526_T::fillScreen(colorObj* inColor)																	{ theTFT->fillScreen(inColor->getColor16()); }
+void MSP3526_T::fillScreen(colorObj* inColor)																{ theTFT->fillScreen(inColor->getColor16()); }
 void MSP3526_T::fillRect(int x,int y,int width,int height,colorObj* inColor)						{ theTFT->fillRect(gX(x),gY(y),width, height,inColor->getColor16()); }
 void MSP3526_T::drawRect(int x,int y,int width,int height,colorObj* inColor)						{ theTFT->drawRect(gX(x),gY(y),width, height,inColor->getColor16()); }
 void MSP3526_T::fillRect(rect* inRect,colorObj* inColor)													{ theTFT->fillRect(gX(inRect->x),gY(inRect->y),inRect->width, inRect->height,inColor->getColor16()); }
@@ -127,12 +127,21 @@ void MSP3526_T::fillRoundRect(int x,int y,int width,int height,int radius,colorO
 void MSP3526_T::drawRoundRect(int x,int y,int width,int height,int radius,colorObj* inColor)	{ theTFT->drawRoundRect(gX(x),gY(y),width,height,radius,inColor->getColor16()); }
 void MSP3526_T::drawCircle(int x,int y,int diam, colorObj* inColor)									{ drawRoundRect(gX(x),gY(y),diam,diam,diam/2,inColor); }
 void MSP3526_T::drawCircleHelper(int x,int y,int rad,byte corner,colorObj* inColor)				{ theTFT->drawCircleHelper(gX(x),gY(y),rad,corner,inColor->getColor16()); }
-void MSP3526_T::fillCircle(int x,int y,int diam, colorObj* inColor)									{ fillRoundRect(gX(x),gY(y),diam,diam,diam/2,inColor); }
-void MSP3526_T::drawTriangle(point* pt0,point* pt1,point* pt2,colorObj* inColor) 					{ theTFT->drawTriangle(gP(pt0).x,gP(pt0).y,gP(pt1).x,gP(pt1).y,gP(pt2).x,gP(pt2).y,inColor->getColor16()); }
+
+void MSP3526_T::fillCircle(int x,int y,int diam, colorObj* inColor) {
+
+	int rad;
+	
+	rad = round((diam/2.0)-1);
+	
+	theTFT->fillCircle(gX(x+rad),gY(y+rad),rad,inColor->getColor16());
+}
+
+void MSP3526_T::drawTriangle(point* pt0,point* pt1,point* pt2,colorObj* inColor) 				{ theTFT->drawTriangle(gP(pt0).x,gP(pt0).y,gP(pt1).x,gP(pt1).y,gP(pt2).x,gP(pt2).y,inColor->getColor16()); }
 void MSP3526_T::fillTriangle(point* pt0,point* pt1,point* pt2,colorObj* inColor)					{ theTFT->fillTriangle(gP(pt0).x,gP(pt0).y,gP(pt1).x,gP(pt1).y,gP(pt2).x,gP(pt2).y,inColor->getColor16()); }
 void MSP3526_T::drawVLine(int x,int y,int height,colorObj* inColor)									{ theTFT->drawFastVLine(gX(x),gY(y),height,inColor->getColor16()); }
-void MSP3526_T::drawHLine(int x,int y,int width,colorObj* inColor)										{ theTFT->drawFastHLine(gX(x),gY(y),width,inColor->getColor16()); }
-void MSP3526_T::drawLine(int x,int y,int x2,int y2,colorObj* inColor)									{ theTFT->drawLine(gX(x),gY(y),gX(x2),gY(y2),inColor->getColor16()); }
+void MSP3526_T::drawHLine(int x,int y,int width,colorObj* inColor)									{ theTFT->drawFastHLine(gX(x),gY(y),width,inColor->getColor16()); }
+void MSP3526_T::drawLine(int x,int y,int x2,int y2,colorObj* inColor)								{ theTFT->drawLine(gX(x),gY(y),gX(x2),gY(y2),inColor->getColor16()); }
 void MSP3526_T::drawPixel(int x,int y,colorObj* inColor)													{ theTFT->drawPixel(gX(x),gY(y),inColor->getColor16()); }
 
 
