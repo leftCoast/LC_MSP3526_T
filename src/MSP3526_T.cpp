@@ -117,6 +117,24 @@ void MSP3526_T::setTextSize(byte inSize)																		{ theTFT->setTextSize(
 void MSP3526_T::setTextWrap(boolean wrap)																		{ theTFT->setTextWrap(wrap); }
 void MSP3526_T::setFont(const GFXfont* font)																	{ theTFT->setFont(font); }
 void MSP3526_T::setCursor(int x,int y)																			{ theTFT->setCursor(gX(x),gY(y)); }
+
+rect	MSP3526_T::getTextRect(const char* inText) {
+
+	rect bounds(0,0,0,0);
+	int16_t	bX;
+	int16_t	bY;
+	uint16_t	bW;
+	uint16_t	bH;
+	
+	bX = 0;
+	bY = 0;
+	bW = 0;
+	bH = 0;
+	theTFT->getTextBounds(inText,getCursorX(),getCursorY(),&bX,&bY,&bW,&bH);
+	bounds.setRect(bX,bY,bW,bH);
+	return bounds;
+}
+
 void MSP3526_T::drawText(const char* inText)																	{ theTFT->print(inText); }
 void MSP3526_T::fillScreen(colorObj* inColor)																{ theTFT->fillScreen(inColor->getColor16()); }
 void MSP3526_T::fillRect(int x,int y,int width,int height,colorObj* inColor)						{ theTFT->fillRect(gX(x),gY(y),width, height,inColor->getColor16()); }

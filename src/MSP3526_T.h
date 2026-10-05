@@ -36,6 +36,7 @@ class MSP3526_T : public displayObj {
 	virtual	void	setTextWrap(boolean wrap);
 	virtual	void	setFont(const GFXfont* font);
 	virtual	void	setCursor(int inX,int inY);
+	virtual	rect	getTextRect(const char* inText);
 	virtual	void	drawText(const char* inText);
 	virtual	void	fillScreen(colorObj* inColor);
 	virtual	void	fillRect(int x,int y,int width,int height,colorObj* inColor);
