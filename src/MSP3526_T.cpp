@@ -152,7 +152,8 @@ void MSP3526_T::fillCircle(int x,int y,int diam, colorObj* inColor) {
 	
 	rad = round((diam/2.0)-1);
 	
-	theTFT->fillCircle(gX(x+rad),gY(y+rad),rad,inColor->getColor16());
+	//theTFT->fillCircle(gX(x+rad),gY(y+rad),rad,inColor->getColor16());
+	theTFT->fillCircle(gX(x),gY(y),rad,inColor->getColor16());
 }
 
 void MSP3526_T::drawTriangle(point* pt0,point* pt1,point* pt2,colorObj* inColor) 				{ theTFT->drawTriangle(gP(pt0).x,gP(pt0).y,gP(pt1).x,gP(pt1).y,gP(pt2).x,gP(pt2).y,inColor->getColor16()); }
