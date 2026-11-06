@@ -143,8 +143,21 @@ void MSP3526_T::fillRect(rect* inRect,colorObj* inColor)													{ theTFT->f
 void MSP3526_T::drawRect(rect* inRect,colorObj* inColor)													{ theTFT->drawRect(gX(inRect->x),gY(inRect->y),inRect->width, inRect->height,inColor->getColor16()); }
 void MSP3526_T::fillRoundRect(int x,int y,int width,int height,int radius,colorObj* inColor)	{ theTFT->fillRoundRect(gX(x),gY(y),width,height,radius,inColor->getColor16()); }
 void MSP3526_T::drawRoundRect(int x,int y,int width,int height,int radius,colorObj* inColor)	{ theTFT->drawRoundRect(gX(x),gY(y),width,height,radius,inColor->getColor16()); }
-void MSP3526_T::drawCircle(int x,int y,int diam, colorObj* inColor)									{ drawRoundRect(gX(x),gY(y),diam,diam,diam/2,inColor); }
-void MSP3526_T::drawCircleHelper(int x,int y,int rad,byte corner,colorObj* inColor)				{ theTFT->drawCircleHelper(gX(x),gY(y),rad,corner,inColor->getColor16()); }
+void MSP3526_T::drawCircle(int x,int y,int diam, colorObj* inColor) {
+
+	//drawRoundRect(gX(x),gY(y),diam,diam,diam/2,inColor); }
+
+
+//void MSP3526_T::drawCircleHelper(int x,int y,int rad,byte corner,colorObj* inColor) {
+
+	int rad;
+	
+	rad = round((diam/2.0)-1);
+	
+	//theTFT->drawCircleHelper(gX(x),gY(y),rad,corner,inColor->getColor16()); }
+	theTFT->drawCircle(gX(x),gY(y),rad,inColor->getColor16());
+}
+
 
 void MSP3526_T::fillCircle(int x,int y,int diam, colorObj* inColor) {
 
@@ -152,7 +165,6 @@ void MSP3526_T::fillCircle(int x,int y,int diam, colorObj* inColor) {
 	
 	rad = round((diam/2.0)-1);
 	
-	//theTFT->fillCircle(gX(x+rad),gY(y+rad),rad,inColor->getColor16());
 	theTFT->fillCircle(gX(x),gY(y),rad,inColor->getColor16());
 }
 
